@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui';
 import { Text } from '@/components/ui/text';
 import { Link, Stack } from 'expo-router';
 import * as React from 'react';
@@ -10,8 +11,10 @@ export default function NotFoundScreen() {
 			<View>
 				<Text>This screen doesn't exist.</Text>
 
-				<Link href='/'>
-					<Text>Go to home screen!</Text>
+				<Link href='/' asChild>
+					<Button variant='link'>
+						<Text>Home</Text>
+					</Button>
 				</Link>
 			</View>
 		</>

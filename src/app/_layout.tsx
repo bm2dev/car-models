@@ -1,4 +1,5 @@
-import { ThemeToggle } from '@/components/ThemeToggle';
+import { ThemeToggle } from '@/components';
+import '@/lib/rnr/config/customComponentsConfig';
 import { ThemeProvider } from '@/lib/rnr/providers';
 import { Stack } from 'expo-router';
 import * as React from 'react';
@@ -12,10 +13,15 @@ export {
 export default function AppProviders() {
 	return (
 		<ThemeProvider>
-			<Stack>
+			<Stack screenOptions={{ headerShown: false }}>
 				<Stack.Screen
 					name='index'
-					options={{ title: 'Home', headerRight: () => <ThemeToggle /> }}
+					options={{
+						headerShown: true,
+						headerTitle: '',
+						headerRight: ThemeToggle,
+						headerTransparent: true,
+					}}
 				/>
 			</Stack>
 		</ThemeProvider>
