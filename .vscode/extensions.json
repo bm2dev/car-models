@@ -1,0 +1,12 @@
+{
+	"recommendations": [
+		"esbenp.prettier-vscode",
+		"dbaeumer.vscode-eslint",
+		"eamodio.gitlens",
+		"mariusalchimavicius.json-to-ts",
+		"formulahendry.auto-rename-tag",
+		"przemo1115.index-generator",
+		"pkief.material-icon-theme",
+		"cardinal90.multi-cursor-case-preserve"
+	]
+}
