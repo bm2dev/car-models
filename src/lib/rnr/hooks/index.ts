@@ -1,1 +1,1 @@
-export * from './useColorScheme';
+export * from './use-color-scheme';

@@ -1,1 +1,1 @@
-export * from './customComponentsConfig';
+export * from './rnr-components-config';

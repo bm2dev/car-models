@@ -1,7 +1,9 @@
 import { ThemeToggle } from '@/components';
-import '@/lib/rnr/config/customComponentsConfig';
+import { AuthProvider } from '@/features/auth/providers';
+import { ReactQueryProvider } from '@/lib/react-query/providers';
+import '@/lib/rnr/config/rnr-components-config';
 import { ThemeProvider } from '@/lib/rnr/providers';
-import { Stack } from 'expo-router';
+import { SplashScreen, Stack } from 'expo-router';
 import * as React from 'react';
 import '../global.css';
 
@@ -10,20 +12,32 @@ export {
 	ErrorBoundary,
 } from 'expo-router';
 
+SplashScreen.preventAutoHideAsync();
+
 export default function AppProviders() {
 	return (
-		<ThemeProvider>
-			<Stack screenOptions={{ headerShown: false }}>
-				<Stack.Screen
-					name='index'
-					options={{
-						headerShown: true,
-						headerTitle: '',
-						headerRight: ThemeToggle,
-						headerTransparent: true,
-					}}
-				/>
-			</Stack>
-		</ThemeProvider>
+		<ReactQueryProvider>
+			<AuthProvider>
+				<ThemeProvider>
+					<Routes />
+				</ThemeProvider>
+			</AuthProvider>
+		</ReactQueryProvider>
+	);
+}
+
+function Routes() {
+	return (
+		<Stack screenOptions={{ headerShown: false }}>
+			<Stack.Screen
+				name='index'
+				options={{
+					headerShown: true,
+					headerTitle: '',
+					headerRight: ThemeToggle,
+					headerTransparent: true,
+				}}
+			/>
+		</Stack>
 	);
 }
