@@ -1,5 +1,5 @@
 import ControlledInput from '@/components/controlled-input';
-import { Button } from '@/components/ui';
+import { Button, Text } from '@/components/ui';
 import { Alert, AlertTitle } from '@/components/ui/alert';
 import { SignInReq, signInReqSchema } from '@/features/auth/apis';
 import { useAuth } from '@/features/auth/providers';
@@ -7,10 +7,10 @@ import { AlertTriangle } from '@/lib/rnr/icons';
 import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
 import { useForm } from 'react-hook-form';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 
 export function SignInForm() {
-	const { signIn, signInError } = useAuth();
+	const { signIn, signInError, isPendingSignIn } = useAuth();
 
 	const {
 		control,
@@ -44,7 +44,11 @@ export function SignInForm() {
 				placeholder='Your Password'
 				keyboardType='visible-password'
 			/>
-			<Button size='lg' variant='default' onPress={handleSubmit((data) => signIn({ data }))}>
+			<Button
+				size='lg'
+				onPress={handleSubmit((data) => signIn({ data }))}
+				isLoading={isPendingSignIn}
+			>
 				<Text>Sign In</Text>
 			</Button>
 		</View>

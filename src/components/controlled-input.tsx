@@ -1,5 +1,6 @@
-import { Input, Muted } from '@/components/ui';
+import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Muted } from '@/components/ui/typography';
 import React from 'react';
 import { Controller, FieldErrors, FieldValues, UseControllerProps } from 'react-hook-form';
 import { TextInputProps, View } from 'react-native';
