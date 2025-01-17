@@ -27,8 +27,8 @@ function Routes() {
 				),
 			}}
 		>
-			<Stack.Screen name='model/[id]' />
 			<Stack.Screen name='index' />
+			<Stack.Screen name='model/[id]' />
 		</Stack>
 	);
 }

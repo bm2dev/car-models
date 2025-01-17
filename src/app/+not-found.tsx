@@ -11,7 +11,7 @@ export default function NotFoundScreen() {
 			<View>
 				<Text>This screen doesn't exist.</Text>
 
-				<Link href='/' asChild>
+				<Link href='/' replace asChild>
 					<Button variant='link'>
 						<Text>Home</Text>
 					</Button>
