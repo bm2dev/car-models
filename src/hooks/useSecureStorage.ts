@@ -34,6 +34,8 @@ export function useSecureStorage<T>(keyName: string, defaultValue: T) {
 			const valueToStore = value instanceof Function ? value(storedValue) : value;
 			const stringValue = JSON.stringify({ value: valueToStore });
 
+			setStoredValue(valueToStore);
+
 			if (expiryDate) {
 				const expiryTimeInTimestamp = expiryDate.getTime();
 				const valueWithExpiry = JSON.stringify({
@@ -44,8 +46,6 @@ export function useSecureStorage<T>(keyName: string, defaultValue: T) {
 			} else {
 				await SecureStore.setItemAsync(keyName, stringValue);
 			}
-
-			setStoredValue(valueToStore);
 		} catch (error) {
 			console.log(error);
 		}
@@ -53,12 +53,12 @@ export function useSecureStorage<T>(keyName: string, defaultValue: T) {
 
 	const removeValue = async () => {
 		try {
-			await SecureStore.deleteItemAsync(keyName);
 			setStoredValue(defaultValue);
+			await SecureStore.deleteItemAsync(keyName);
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
-	return [[storedValue, setValue, removeValue], isLoadingStorage] as const;
+	return [[storedValue, isLoadingStorage], setValue, removeValue] as const;
 }

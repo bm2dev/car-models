@@ -31,6 +31,8 @@ export function useAsyncStorage<T>(keyName: string, defaultValue: T) {
 			const valueToStore = value instanceof Function ? value(storedValue) : value;
 			const stringValue = JSON.stringify({ value: valueToStore });
 
+			setStoredValue(valueToStore);
+
 			if (expiryDate) {
 				const expiryTimeInTimestamp = expiryDate.getTime();
 				const valueWithExpiry = JSON.stringify({
@@ -41,8 +43,6 @@ export function useAsyncStorage<T>(keyName: string, defaultValue: T) {
 			} else {
 				await AsyncStorage.setItem(keyName, stringValue);
 			}
-
-			setStoredValue(valueToStore);
 		} catch (error) {
 			console.log(error);
 		}
@@ -50,8 +50,8 @@ export function useAsyncStorage<T>(keyName: string, defaultValue: T) {
 
 	const removeValue = async () => {
 		try {
-			await AsyncStorage.removeItem(keyName);
 			setStoredValue(defaultValue);
+			await AsyncStorage.removeItem(keyName);
 		} catch (error) {
 			console.log(error);
 		}

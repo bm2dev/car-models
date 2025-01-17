@@ -28,8 +28,8 @@ export default function RootProviders() {
 
 function Routes() {
 	return (
-		<Stack>
-			<Stack.Screen name='(auth)' options={{ headerShown: false }} />
+		<Stack screenOptions={{ headerShown: false }}>
+			<Stack.Screen name='(auth)' />
 			<Stack.Screen
 				name='sign-in'
 				options={{
@@ -37,6 +37,7 @@ function Routes() {
 					headerTitle: '',
 					headerRight: ThemeToggle,
 					headerTransparent: true,
+					headerBackVisible: false,
 				}}
 			/>
 		</Stack>

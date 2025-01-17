@@ -26,7 +26,7 @@ export function AuthProvider({ children }: { children?: React.ReactNode }) {
 	const router = useRouter();
 	const queryClient = useQueryClient();
 
-	const [[user, setUser, removeUser], isLoadingUser] = useSecureStorage<IAuthContext['user']>(
+	const [[user, isLoadingUser], setUser, removeUser] = useSecureStorage<IAuthContext['user']>(
 		'user',
 		null
 	);
@@ -43,7 +43,7 @@ export function AuthProvider({ children }: { children?: React.ReactNode }) {
 				// setUser(user, new Date((jwtInfo.exp || 0) * 1000));
 				setUser(user);
 				setTestApiToken(user.token);
-				router.push('/(auth)');
+				router.replace('/(auth)');
 			},
 		},
 	});
@@ -54,9 +54,10 @@ export function AuthProvider({ children }: { children?: React.ReactNode }) {
 	}
 
 	function signOut() {
-		router.push('/');
-		setTestApiToken(null);
+		console.log('signOut');
 		removeSessionData();
+		setTestApiToken(null);
+		router.replace('/sign-in');
 	}
 
 	useEffect(() => {
