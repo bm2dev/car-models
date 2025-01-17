@@ -1,4 +1,5 @@
-import { Input, Large, Muted } from '@/components/ui';
+import { Input, Muted } from '@/components/ui';
+import { Label } from '@/components/ui/label';
 import React from 'react';
 import { Controller, FieldErrors, FieldValues, UseControllerProps } from 'react-hook-form';
 import { TextInputProps, View } from 'react-native';
@@ -29,8 +30,8 @@ export default function ControlledInput<FormType extends FieldValues>({
 			defaultValue={defaultValue}
 			shouldUnregister={shouldUnregister}
 			render={({ field: { name, value, disabled, onChange, onBlur, ref } }) => (
-				<View className='gap-2'>
-					{label && <Large nativeID={name}>{label}</Large>}
+				<View className='gap-1'>
+					{label && <Label nativeID={name}>{label}</Label>}
 					<Input
 						{...textInputProps}
 						aria-labelledby={name}

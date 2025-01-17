@@ -14,7 +14,7 @@ export {
 
 SplashScreen.preventAutoHideAsync();
 
-export default function AppProviders() {
+export default function RootProviders() {
 	return (
 		<ReactQueryProvider>
 			<AuthProvider>
@@ -28,9 +28,10 @@ export default function AppProviders() {
 
 function Routes() {
 	return (
-		<Stack screenOptions={{ headerShown: false }}>
+		<Stack>
+			<Stack.Screen name='(auth)' options={{ headerShown: false }} />
 			<Stack.Screen
-				name='index'
+				name='sign-in'
 				options={{
 					headerShown: true,
 					headerTitle: '',

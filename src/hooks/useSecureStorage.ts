@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 
 export function useSecureStorage<T>(keyName: string, defaultValue: T) {
 	const [storedValue, setStoredValue] = useState<T>(defaultValue);
+	const [isLoadingStorage, setIsLoadingStorage] = useState<boolean>(true);
 
 	useEffect(() => {
 		const loadStoredValue = async () => {
@@ -20,6 +21,8 @@ export function useSecureStorage<T>(keyName: string, defaultValue: T) {
 				}
 			} catch (err) {
 				console.error(err);
+			} finally {
+				setIsLoadingStorage(false);
 			}
 		};
 
@@ -57,5 +60,5 @@ export function useSecureStorage<T>(keyName: string, defaultValue: T) {
 		}
 	};
 
-	return [storedValue, setValue, removeValue] as const;
+	return [[storedValue, setValue, removeValue], isLoadingStorage] as const;
 }

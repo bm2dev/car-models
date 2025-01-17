@@ -4,13 +4,14 @@ import { useSecureStorage } from '@/hooks';
 import { setTestApiToken, TestApiErrorType } from '@/lib/axios/clients';
 import { useQueryClient } from '@tanstack/react-query';
 import { SplashScreen, useRouter } from 'expo-router';
-import { jwtDecode } from 'jwt-decode';
-import { createContext, useContext, useEffect, useState } from 'react';
+// import { jwtDecode } from 'jwt-decode';
+import { createContext, useContext, useEffect } from 'react';
 
 interface IAuthContext {
 	user: IUser | null;
-	isPendingSignIn: boolean;
 	signInError: TestApiErrorType | null;
+	isPendingSignIn: boolean;
+	isLoadingSession: boolean;
 	signIn: ReturnType<typeof useSignIn>['mutate'];
 	signOut: () => void;
 }
@@ -25,8 +26,10 @@ export function AuthProvider({ children }: { children?: React.ReactNode }) {
 	const router = useRouter();
 	const queryClient = useQueryClient();
 
-	const [isLoadingSession, setIsLoadingSession] = useState(true);
-	const [user, setUser, removeUser] = useSecureStorage<IAuthContext['user']>('user', null);
+	const [[user, setUser, removeUser], isLoadingUser] = useSecureStorage<IAuthContext['user']>(
+		'user',
+		null
+	);
 
 	const {
 		mutate: signIn,
@@ -35,8 +38,10 @@ export function AuthProvider({ children }: { children?: React.ReactNode }) {
 	} = useSignIn({
 		mutationConfig: {
 			onSuccess: ({ user }) => {
-				const jwtInfo = jwtDecode(user.token);
-				setUser(user, new Date((jwtInfo.exp || 0) * 1000));
+				// If the JWT had an expiration date, we would use it to set the expiration date of the token
+				// const jwtInfo = jwtDecode(user.token);
+				// setUser(user, new Date((jwtInfo.exp || 0) * 1000));
+				setUser(user);
 				setTestApiToken(user.token);
 				router.push('/(auth)');
 			},
@@ -55,27 +60,28 @@ export function AuthProvider({ children }: { children?: React.ReactNode }) {
 	}
 
 	useEffect(() => {
+		if (isLoadingUser) return;
+
 		if (user) {
 			setTestApiToken(user.token);
-			setIsLoadingSession(false);
 		} else {
 			removeSessionData();
-			setIsLoadingSession(false);
 		}
-	}, []);
+	}, [isLoadingUser]);
 
 	useEffect(() => {
-		if (!isLoadingSession) {
+		if (!isLoadingUser) {
 			SplashScreen.hideAsync();
 		}
-	}, [isLoadingSession]);
+	}, [isLoadingUser]);
 
 	return (
 		<AuthContext.Provider
 			value={{
 				user,
-				isPendingSignIn,
 				signInError,
+				isPendingSignIn,
+				isLoadingSession: isLoadingUser,
 				signIn: signIn,
 				signOut,
 			}}
