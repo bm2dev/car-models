@@ -1,7 +1,7 @@
 import { useSignIn } from '@/features/auth/apis';
 import { IUser } from '@/features/auth/types';
 import { useSecureStorage } from '@/hooks';
-import { setTestApiToken, TestApiErrorType } from '@/lib/axios/clients';
+import { ApiTestErrorType, setApiTestToken } from '@/lib/axios/clients';
 import { useQueryClient } from '@tanstack/react-query';
 import { SplashScreen, useRouter } from 'expo-router';
 // import { jwtDecode } from 'jwt-decode';
@@ -9,7 +9,7 @@ import { createContext, useContext, useEffect } from 'react';
 
 interface IAuthContext {
 	user: IUser | null;
-	signInError: TestApiErrorType | null;
+	signInError: ApiTestErrorType | null;
 	isPendingSignIn: boolean;
 	isLoadingSession: boolean;
 	signIn: ReturnType<typeof useSignIn>['mutate'];
@@ -42,7 +42,7 @@ export function AuthProvider({ children }: { children?: React.ReactNode }) {
 				// const jwtInfo = jwtDecode(user.token);
 				// setUser(user, new Date((jwtInfo.exp || 0) * 1000));
 				setUser(user);
-				setTestApiToken(user.token);
+				setApiTestToken(user.token);
 				router.replace('/(auth)');
 			},
 		},
@@ -56,7 +56,7 @@ export function AuthProvider({ children }: { children?: React.ReactNode }) {
 	function signOut() {
 		console.log('signOut');
 		removeSessionData();
-		setTestApiToken(null);
+		setApiTestToken(null);
 		router.replace('/sign-in');
 	}
 
@@ -64,7 +64,7 @@ export function AuthProvider({ children }: { children?: React.ReactNode }) {
 		if (isLoadingUser) return;
 
 		if (user) {
-			setTestApiToken(user.token);
+			setApiTestToken(user.token);
 		} else {
 			removeSessionData();
 		}

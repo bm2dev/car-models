@@ -1,6 +1,6 @@
-import { TestApiErrorType } from '@/lib/axios/clients';
 import { getMilliseconds } from '@/utils';
 import { DefaultOptions, UseMutationOptions } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
 
 export const queryClientConfig = {
 	queries: {
@@ -19,9 +19,7 @@ export type QueryConfig<T extends (...args: any[]) => any> = Omit<
 	'queryKey' | 'queryFn'
 >;
 
-export type MutationConfig<MutationFnType extends (...args: any) => Promise<any>> =
-	UseMutationOptions<
-		ApiFnReturnType<MutationFnType>,
-		TestApiErrorType,
-		Parameters<MutationFnType>[0]
-	>;
+export type MutationConfig<
+	MutationFnType extends (...args: any) => Promise<any>,
+	TError = AxiosError<any>
+> = UseMutationOptions<ApiFnReturnType<MutationFnType>, TError, Parameters<MutationFnType>[0]>;

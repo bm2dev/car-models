@@ -1,17 +1,14 @@
-import { Button, H1, Text } from '@/components/ui';
-import { Link } from 'expo-router';
+import { ModelListSmart } from '@/features/models/components';
+import { useLocalSearchParams } from 'expo-router';
 import React from 'react';
 import { View } from 'react-native';
 
 export default function Model() {
+	const { id } = useLocalSearchParams();
+
 	return (
-		<View className='flex-1 justify-center items-center bg-background'>
-			<H1>Model</H1>
-			<Link href={'/'} asChild>
-				<Button variant='link'>
-					<Text>Home</Text>
-				</Button>
-			</Link>
+		<View className='flex-1  bg-background'>
+			<ModelListSmart brandCodigo={String(id)} />
 		</View>
 	);
 }

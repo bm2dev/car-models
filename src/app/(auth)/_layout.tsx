@@ -18,7 +18,6 @@ function Routes() {
 	return (
 		<Stack
 			screenOptions={{
-				headerTitle: '',
 				headerRight: () => (
 					<View className='flex-row items-center gap-x-4'>
 						<SignOutButton />
@@ -27,8 +26,8 @@ function Routes() {
 				),
 			}}
 		>
-			<Stack.Screen name='index' />
-			<Stack.Screen name='model/[id]' />
+			<Stack.Screen name='index' options={{ headerTitle: 'Marcas' }} />
+			<Stack.Screen name='model/[id]' options={{ headerTitle: 'Modelos' }} />
 		</Stack>
 	);
 }
