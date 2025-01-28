@@ -26,8 +26,8 @@ function Routes() {
 				),
 			}}
 		>
-			<Stack.Screen name='index' options={{ headerTitle: 'Marcas' }} />
-			<Stack.Screen name='model/[id]' options={{ headerTitle: 'Modelos' }} />
+			<Stack.Screen name='index' options={{ headerTitle: 'Brands' }} />
+			<Stack.Screen name='model/[id]' options={{ headerTitle: 'Models' }} />
 		</Stack>
 	);
 }
