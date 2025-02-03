@@ -19,7 +19,7 @@ export function ModelListSmart({ brandCodigo }: GetModelsReq) {
 	}
 
 	if (error) {
-		const { message = 'Erro desconhecido' } = error;
+		const { message = 'Unknown error' } = error;
 		return (
 			<View className='flex-1 items-center p-4'>
 				<Alert icon={AlertTriangle} variant='destructive'>

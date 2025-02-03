@@ -20,11 +20,11 @@ export function BrandListSmart() {
 	}
 
 	if (error) {
-		const { message = 'Erro desconhecido' } = error;
+		const { message = 'Unknown error' } = error;
 		return (
 			<View className='flex-1 items-center p-4'>
 				<Alert icon={AlertTriangle} variant='destructive'>
-					<AlertTitle>Erro!</AlertTitle>
+					<AlertTitle>Error!</AlertTitle>
 					<AlertDescription>{message}</AlertDescription>
 				</Alert>
 			</View>
