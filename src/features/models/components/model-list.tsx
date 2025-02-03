@@ -13,7 +13,7 @@ export function ModelListSmart({ brandCodigo }: GetModelsReq) {
 	if (isLoading) {
 		return (
 			<View className='flex-1 items-center p-4'>
-				<ActivityIndicator size='large' />
+				<ActivityIndicator testID='loading-indicator' size='large' />
 			</View>
 		);
 	}
@@ -23,8 +23,8 @@ export function ModelListSmart({ brandCodigo }: GetModelsReq) {
 		return (
 			<View className='flex-1 items-center p-4'>
 				<Alert icon={AlertTriangle} variant='destructive'>
-					<AlertTitle>Erro!</AlertTitle>
-					<AlertDescription>{message}</AlertDescription>
+					<AlertTitle>Error!</AlertTitle>
+					<AlertDescription testID='error-message'>{message}</AlertDescription>
 				</Alert>
 			</View>
 		);
@@ -33,7 +33,7 @@ export function ModelListSmart({ brandCodigo }: GetModelsReq) {
 	if (!modelos.length) {
 		return (
 			<View className='flex-1 items-center p-4'>
-				<Large>Nenhum modelo encontrado!</Large>
+				<Large testID='no-data-message'>No models found!</Large>
 			</View>
 		);
 	}
