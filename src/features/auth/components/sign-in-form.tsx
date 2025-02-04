@@ -1,4 +1,4 @@
-import ControlledInput from '@/components/controlled-input';
+import { ControlledInput } from '@/components/controlled-input';
 import { Button, Text } from '@/components/ui';
 import { Alert, AlertTitle } from '@/components/ui/alert';
 import { SignInReq, signInReqSchema } from '@/features/auth/apis';

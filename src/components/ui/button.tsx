@@ -60,6 +60,7 @@ const Button = React.forwardRef<React.ElementRef<typeof Pressable>, ButtonProps>
 		return (
 			<TextClassContext.Provider value={buttonTextVariants({ variant, size })}>
 				<Pressable
+					aria-busy={isLoading}
 					disabled={disabled || isLoading}
 					className={cn(disabled && 'opacity-50', buttonVariants({ variant, size, className }))}
 					ref={ref}

@@ -11,7 +11,7 @@ export type ControlledInputProps<FormType extends FieldValues = FieldValues> = {
 } & Omit<TextInputProps, 'editable' | 'onChangeText' | 'value'> &
 	UseControllerProps<FormType>;
 
-export default function ControlledInput<FormType extends FieldValues>({
+export function ControlledInput<FormType extends FieldValues>({
 	control,
 	name,
 	rules,
