@@ -1,5 +1,5 @@
 import { render, UseJestMock } from '@/__test__/test-utils';
-import { modelsMock } from '@/features/models/__mocks__';
+import { modelMocks } from '@/features/models/__mocks__/model-mocks';
 import { useModels } from '@/features/models/apis';
 import { ModelList, ModelListSmart } from '@/features/models/components/model-list';
 import React from 'react';
@@ -40,23 +40,23 @@ describe('ModelListSmart', () => {
 	it('should render a list of models when data is available', async () => {
 		useModelsMock.mockReturnValue({
 			data: {
-				modelos: [modelsMock.model1, modelsMock.model2],
+				modelos: [modelMocks.model1, modelMocks.model2],
 			},
 		});
 		const { getByText, findByText } = render(<ModelListSmart brandCodigo={BRAND_CODIGO} />);
 
-		await findByText(modelsMock.model1.nome);
+		await findByText(modelMocks.model1.nome);
 
-		expect(getByText(modelsMock.model1.nome)).toBeTruthy();
-		expect(getByText(modelsMock.model2.nome)).toBeTruthy();
+		expect(getByText(modelMocks.model1.nome)).toBeTruthy();
+		expect(getByText(modelMocks.model2.nome)).toBeTruthy();
 	});
 });
 
 describe('ModelList', () => {
 	it('should render a list of models', () => {
-		const { getByText } = render(<ModelList models={[modelsMock.model1, modelsMock.model2]} />);
+		const { getByText } = render(<ModelList models={[modelMocks.model1, modelMocks.model2]} />);
 
-		expect(getByText(modelsMock.model1.nome)).toBeTruthy();
-		expect(getByText(modelsMock.model2.nome)).toBeTruthy();
+		expect(getByText(modelMocks.model1.nome)).toBeTruthy();
+		expect(getByText(modelMocks.model2.nome)).toBeTruthy();
 	});
 });

@@ -14,7 +14,7 @@ export function BrandListSmart() {
 	if (isLoading) {
 		return (
 			<View className='flex-1 items-center p-4'>
-				<ActivityIndicator size='large' />
+				<ActivityIndicator testID='loading-indicator' size='large' />
 			</View>
 		);
 	}
@@ -25,7 +25,7 @@ export function BrandListSmart() {
 			<View className='flex-1 items-center p-4'>
 				<Alert icon={AlertTriangle} variant='destructive'>
 					<AlertTitle>Error!</AlertTitle>
-					<AlertDescription>{message}</AlertDescription>
+					<AlertDescription testID='error-message'>{message}</AlertDescription>
 				</Alert>
 			</View>
 		);
@@ -34,7 +34,7 @@ export function BrandListSmart() {
 	if (!brands.length) {
 		return (
 			<View className='flex-1 items-center p-4'>
-				<Large>Nenhuma marca encontrada!</Large>
+				<Large testID='no-data-message'>Nenhuma marca encontrada!</Large>
 			</View>
 		);
 	}
@@ -53,7 +53,7 @@ export function BrandList({ brands }: { brands: Brand[] }) {
 	);
 }
 
-function BrandItemList({ brand }: { brand: Brand }) {
+export function BrandItemList({ brand }: { brand: Brand }) {
 	const router = useRouter();
 
 	return (
