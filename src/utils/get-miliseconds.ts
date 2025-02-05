@@ -1,8 +1,11 @@
-export interface GetMillisecondsProps {
-	seconds?: number;
-	minutes?: number;
-	hours?: number;
-}
+type GetMilisecondsFromSecondsProps = { seconds: number };
+type GetMilisecondsFromMinutesProps = { minutes: number };
+type GetMilisecondsFromHoursProps = { hours: number };
+
+type GetMillisecondsProps =
+	| GetMilisecondsFromSecondsProps
+	| GetMilisecondsFromMinutesProps
+	| GetMilisecondsFromHoursProps;
 
 /**
  * Converts time in hours, minutes, and seconds to milliseconds.
@@ -22,22 +25,25 @@ export interface GetMillisecondsProps {
  * getMilliseconds({}) // 0
  */
 export function getMilliseconds(props: GetMillisecondsProps) {
-	const { seconds = 0, minutes = 0, hours = 0 } = props;
-
-	if (seconds < 0 || minutes < 0 || hours < 0) {
-		throw new Error('Invalid time');
+	if ('seconds' in props) {
+		if (props.seconds < 0) {
+			throw new Error('Invalid time');
+		}
+		return props.seconds * 1000;
 	}
 
-	if (seconds) {
-		return seconds * 1000;
+	if ('minutes' in props) {
+		if (props.minutes < 0) {
+			throw new Error('Invalid time');
+		}
+		return props.minutes * 60 * 1000;
 	}
 
-	if (minutes) {
-		return minutes * 60 * 1000;
-	}
-
-	if (hours) {
-		return hours * 60 * 60 * 1000;
+	if ('hours' in props) {
+		if (props.hours < 0) {
+			throw new Error('Invalid time');
+		}
+		return props.hours * 60 * 60 * 1000;
 	}
 
 	return 0;
