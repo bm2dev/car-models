@@ -8,10 +8,16 @@ export function SignOutButton() {
 
 	return (
 		<NativePressable
+			testID='sign-out-button'
 			onPress={signOut}
 			className='aspect-square justify-center p-0.5 rounded-full overflow-hidden'
 		>
-			<ArrowLeftFromLine className='color-destructive' size={23} strokeWidth={1.25} />
+			<ArrowLeftFromLine
+				aria-label='sign-out-icon'
+				className='color-destructive'
+				size={23}
+				strokeWidth={1.25}
+			/>
 		</NativePressable>
 	);
 }
