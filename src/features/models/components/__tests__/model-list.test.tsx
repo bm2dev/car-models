@@ -1,7 +1,7 @@
-import { render, UseJestMock } from '@/__test__/test-utils';
 import { modelMocks } from '@/features/models/__mocks__/model-mocks';
 import { useModels } from '@/features/models/apis';
 import { ModelList, ModelListSmart } from '@/features/models/components/model-list';
+import { render, UseJestMock } from '@/testing/test-utils';
 import React from 'react';
 
 jest.mock('@/features/models/apis');

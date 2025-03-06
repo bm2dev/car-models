@@ -1,7 +1,7 @@
-import { UseJestMock, fireEvent, render } from '@/__test__/test-utils';
 import { NativePressable } from '@/components/native-pressable';
 import { Text } from '@/components/ui';
 import { useColorScheme } from '@/lib/rnr/hooks';
+import { UseJestMock, fireEvent, render } from '@/testing/test-utils';
 import React from 'react';
 
 jest.mock('@/lib/rnr/hooks');

@@ -1,7 +1,7 @@
-import { UseJestMock } from '@/__test__/test-utils';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { useColorScheme } from '@/lib/rnr/hooks';
 import { setAndroidNavigationBar } from '@/lib/rnr/utils';
+import { UseJestMock } from '@/testing/test-utils';
 import { fireEvent, render } from '@testing-library/react-native';
 
 jest.mock('@/lib/rnr/hooks');

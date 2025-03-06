@@ -1,7 +1,7 @@
-import { UseJestMock, fireEvent, render, waitFor } from '@/__test__/test-utils';
 import { SignInForm } from '@/features/auth/components/sign-in-form';
 import { useAuth } from '@/features/auth/providers';
 import { ApiTestErrorType } from '@/lib/axios/clients';
+import { UseJestMock, fireEvent, render, waitFor } from '@/testing/test-utils';
 import React from 'react';
 
 jest.mock('@/features/auth/providers');

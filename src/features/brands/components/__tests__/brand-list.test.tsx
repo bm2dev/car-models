@@ -1,7 +1,7 @@
-import { fireEvent, render, UseJestMock } from '@/__test__/test-utils';
 import { brandMocks } from '@/features/brands/__mocks__/brand-mocks';
 import { useBrands } from '@/features/brands/apis';
 import { BrandItemList, BrandList, BrandListSmart } from '@/features/brands/components/brand-list';
+import { fireEvent, render, UseJestMock } from '@/testing/test-utils';
 import { useRouter } from 'expo-router';
 import React from 'react';
 

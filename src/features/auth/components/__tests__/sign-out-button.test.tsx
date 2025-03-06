@@ -1,6 +1,6 @@
-import { UseJestMock, fireEvent, render } from '@/__test__/test-utils';
 import { SignOutButton } from '@/features/auth/components/sign-out-button';
 import { useAuth } from '@/features/auth/providers';
+import { UseJestMock, fireEvent, render } from '@/testing/test-utils';
 import React from 'react';
 
 jest.mock('@/features/auth/providers');
