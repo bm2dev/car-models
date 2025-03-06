@@ -1,5 +1,5 @@
 import { useSignIn } from '@/features/auth/apis';
-import { IUser } from '@/features/auth/types';
+import { User } from '@/features/auth/types';
 import { useSecureStorage } from '@/hooks';
 import { ApiTestErrorType, setApiTestToken } from '@/lib/axios/clients';
 import { useQueryClient } from '@tanstack/react-query';
@@ -8,7 +8,7 @@ import { SplashScreen, useRouter } from 'expo-router';
 import { createContext, useContext, useEffect } from 'react';
 
 interface IAuthContext {
-	user: IUser | null;
+	user: User | null;
 	signInError: ApiTestErrorType | null;
 	isPendingSignIn: boolean;
 	isLoadingSession: boolean;

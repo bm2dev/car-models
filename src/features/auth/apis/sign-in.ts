@@ -1,4 +1,4 @@
-import { IUser } from '@/features/auth/types';
+import { User } from '@/features/auth/types';
 import { apiTest, ApiTestErrorType } from '@/lib/axios/clients';
 import { MutationConfig } from '@/lib/react-query/config';
 import { useMutation } from '@tanstack/react-query';
@@ -10,7 +10,7 @@ export const signInReqSchema = z.object({
 });
 
 export type SignInReq = z.infer<typeof signInReqSchema>;
-export type SignInRes = { error: boolean; user: IUser };
+export type SignInRes = { error: boolean; user: User };
 
 export async function signIn({ data }: { data: SignInReq }) {
 	return (await apiTest.post<SignInRes>(`/signIn`, data)).data;
